@@ -3,6 +3,8 @@ package com.matiwe.api_republikanos.service;
 import com.matiwe.api_republikanos.dto.request.UsuarioRequestDTO;
 import com.matiwe.api_republikanos.dto.response.UsuarioResponseDTO;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public interface UsuarioService {
@@ -15,4 +17,6 @@ public interface UsuarioService {
     UsuarioResponseDTO update(UsuarioRequestDTO usuarioDTO, Long id);
 
     String delete(Long id);
+
+    String gerarHash(String senha);
 }
