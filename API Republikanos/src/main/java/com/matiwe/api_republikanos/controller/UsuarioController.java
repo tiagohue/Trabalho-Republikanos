@@ -17,7 +17,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UsuarioController {
     private final UsuarioService usuarioService;
-    private final UsuarioRepository usuarioRepository;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<UsuarioResponseDTO> findById(@PathVariable Long id) {
