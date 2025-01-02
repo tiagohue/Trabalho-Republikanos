@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "TB_USUARIO")
 @Getter
 @Setter
 @NoArgsConstructor
