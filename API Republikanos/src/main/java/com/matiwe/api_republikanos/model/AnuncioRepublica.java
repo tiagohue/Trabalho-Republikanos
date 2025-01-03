@@ -45,8 +45,9 @@ public class AnuncioRepublica {
     private Contato contato;
 
     @Builder
-    public AnuncioRepublica(double valor, String descricao) {
+    public AnuncioRepublica(double valor, String descricao, Localizacao localizacao) {
         this.valor = valor;
         this.descricao = descricao;
+        this.localizacao = localizacao;
     }
 }

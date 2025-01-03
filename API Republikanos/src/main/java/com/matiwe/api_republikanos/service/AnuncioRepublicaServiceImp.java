@@ -3,8 +3,11 @@ package com.matiwe.api_republikanos.service;
 import com.matiwe.api_republikanos.dto.request.AnuncioRepublicaRequestDTO;
 import com.matiwe.api_republikanos.dto.response.AnuncioRepublicaResponseDTO;
 import com.matiwe.api_republikanos.model.AnuncioRepublica;
+import com.matiwe.api_republikanos.model.Localizacao;
 import com.matiwe.api_republikanos.repository.AnuncioRepublicaRepository;
+import com.matiwe.api_republikanos.repository.LocalizacaoRepository;
 import com.matiwe.api_republikanos.util.AnuncioRepublicaMapper;
+import com.matiwe.api_republikanos.util.LocalizacaoMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -19,6 +22,8 @@ import java.util.List;
 public class AnuncioRepublicaServiceImp implements AnuncioRepublicaService{
     private final AnuncioRepublicaRepository anuncioRepublicaRepository;
     private final AnuncioRepublicaMapper anuncioRepublicaMapper;
+    private final LocalizacaoRepository localizacaoRepository;
+    private final LocalizacaoMapper localizacaoMapper;
 
     @Override
     public AnuncioRepublicaResponseDTO findById(Long id) {
@@ -33,6 +38,19 @@ public class AnuncioRepublicaServiceImp implements AnuncioRepublicaService{
     @Override @Transactional
     public AnuncioRepublicaResponseDTO register(AnuncioRepublicaRequestDTO anuncioRepublicaDTO) {
         AnuncioRepublica anuncioRepublica = anuncioRepublicaMapper.toAnuncioRepublica(anuncioRepublicaDTO);
+
+        //procura se a localizacao já existe
+        Localizacao localizacao = localizacaoMapper.toLocalizacao(anuncioRepublicaDTO.getLocalizacaoDTO());
+        List<Localizacao> localizacoes = localizacaoRepository.findLocalizacaoByLogradouroAndNumeroAndBairro(
+                localizacao.getLogradouro(), localizacao.getNumero(), localizacao.getBairro()
+        );
+
+        if (localizacoes.isEmpty()) {
+            localizacaoRepository.save(localizacao);
+            anuncioRepublica.setLocalizacao(localizacao);
+        } else {
+            anuncioRepublica.setLocalizacao(localizacoes.getFirst());
+        }
 
         return anuncioRepublicaMapper.toAnuncioRepublicaDTO(anuncioRepublicaRepository.save(anuncioRepublica));
     }
