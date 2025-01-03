@@ -1,10 +1,7 @@
 package com.matiwe.api_republikanos.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "TB_LOCALIZACAO")
@@ -17,4 +14,20 @@ public class Localizacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Long id;
+
+    @Column
+    private String logradouro;
+
+    @Column
+    private String numero;
+
+    @Column
+    private String bairro;
+
+    @Builder
+    public Localizacao(String logradouro, String numero, String bairro) {
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
+    }
 }
