@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/republicas")
+@RequestMapping("/api/anunciosRepublicas")
 @RequiredArgsConstructor
 public class AnuncioRepublicaController {
     private final AnuncioRepublicaService anuncioRepublicaService;

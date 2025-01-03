@@ -24,6 +24,9 @@ public class ApiRepublikanosApplication {
             usuarioRepository.save(new Usuario("Tiago123", usuarioService.gerarHash("senha"), "Tiago Freitas"));
             usuarioRepository.save(new Usuario("WSS777", usuarioService.gerarHash("1234"), "Wellyson"));
             usuarioRepository.save(new Usuario("Maria R7", usuarioService.gerarHash("0000"), "Maria Rita"));
+
+            // Adicionando os Anuncios das Republicas:
+
         };
     }
 
