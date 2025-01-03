@@ -3,9 +3,6 @@ package com.matiwe.api_republikanos.dto.response;
 import com.matiwe.api_republikanos.model.AnuncioPessoal;
 import com.matiwe.api_republikanos.model.AnuncioRepublica;
 import com.matiwe.api_republikanos.model.Usuario;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
 
 import java.util.Set;
@@ -16,10 +13,8 @@ public class UsuarioResponseDTO {
 
     private String login;
 
-    @Column(nullable = false)
     private String senha;
 
-    @Column(nullable = false)
     private String nome;
 
     Set<AnuncioRepublica> republicas;

@@ -3,8 +3,6 @@ package com.matiwe.api_republikanos.dto.response;
 import com.matiwe.api_republikanos.model.AnuncioPessoal;
 import com.matiwe.api_republikanos.model.Contato;
 import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.graph.internal.AbstractGraphNode;
 
 @Getter
 public class AnuncioPessoalResponseDTO {
