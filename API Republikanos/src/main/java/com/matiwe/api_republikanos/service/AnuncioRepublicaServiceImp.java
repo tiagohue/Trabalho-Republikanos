@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import java.security.MessageDigest;
 import java.util.List;
 
 @Service
@@ -25,10 +24,8 @@ import java.util.List;
 public class AnuncioRepublicaServiceImp implements AnuncioRepublicaService{
     private final AnuncioRepublicaRepository anuncioRepublicaRepository;
     private final AnuncioRepublicaMapper anuncioRepublicaMapper;
-    private final LocalizacaoRepository localizacaoRepository;
-    private final LocalizacaoMapper localizacaoMapper;
-    private final ContatoRepository contatoRepository;
-    private final ContatoMapper contatoMapper;
+    private final LocalizacaoService localizacaoService;
+    private final ContatoService contatoService;
 
 
     @Override
@@ -45,32 +42,13 @@ public class AnuncioRepublicaServiceImp implements AnuncioRepublicaService{
     public AnuncioRepublicaResponseDTO register(AnuncioRepublicaRequestDTO anuncioRepublicaDTO) {
         AnuncioRepublica anuncioRepublica = anuncioRepublicaMapper.toAnuncioRepublica(anuncioRepublicaDTO);
 
-        //procura se a localizacao já existe
-        Localizacao localizacao = localizacaoMapper.toLocalizacao(anuncioRepublicaDTO.getLocalizacaoDTO());
-        List<Localizacao> localizacoes = localizacaoRepository.findLocalizacaoByLogradouroAndNumeroAndBairro(
-                localizacao.getLogradouro(), localizacao.getNumero(), localizacao.getBairro()
-        );
+        //cria a localizacao
+        Localizacao localizacao = localizacaoService.registerByRepublica(anuncioRepublicaDTO.getLocalizacaoDTO());
+        anuncioRepublica.setLocalizacao(localizacao);
 
-        //adiciona a localizacao
-        if (localizacoes.isEmpty()) {
-            localizacaoRepository.save(localizacao);
-            anuncioRepublica.setLocalizacao(localizacao);
-        } else {
-            anuncioRepublica.setLocalizacao(localizacoes.getFirst());
-        }
-
-        //procura se o contato já existe
-        Contato contato = contatoMapper.toContato(anuncioRepublicaDTO.getContatoDTO());
-        List<Contato> contatos = contatoRepository.findContatoByTelefoneAndEmail(
-                contato.getTelefone(), contato.getEmail());
-
-        //adiciona o contato
-        if (contatos.isEmpty()) {
-            contatoRepository.save(contato);
-            anuncioRepublica.setContato(contato);
-        } else {
-            anuncioRepublica.setContato(contatos.getFirst());
-        }
+        //cria o contato
+        Contato contato = contatoService.registerByRepublica(anuncioRepublicaDTO.getContatoDTO());
+        anuncioRepublica.setContato(contato);
 
         return anuncioRepublicaMapper.toAnuncioRepublicaDTO(anuncioRepublicaRepository.save(anuncioRepublica));
     }

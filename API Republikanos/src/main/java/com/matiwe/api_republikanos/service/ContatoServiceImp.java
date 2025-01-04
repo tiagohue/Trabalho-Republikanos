@@ -37,6 +37,22 @@ public class ContatoServiceImp implements ContatoService{
     }
 
     @Override @Transactional
+    public Contato registerByRepublica(ContatoRequestDTO contatoDTO) {
+        Contato contato = contatoMapper.toContato(contatoDTO);
+
+        //procura se a contato já existe
+        List<Contato> contatos = contatoRepository.findContatoByTelefoneAndEmail(
+                contato.getTelefone(), contato.getEmail());
+
+        //cria a contato se ele nao existir
+        if (contatos.isEmpty()) {
+            return contatoRepository.save(contato);
+        } else {
+            return contatos.getFirst();
+        }
+    }
+
+    @Override @Transactional
     public ContatoResponseDTO update(ContatoRequestDTO contatoDTO, Long id) {
         Contato contato = returnContato(id);
 
