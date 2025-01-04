@@ -3,10 +3,13 @@ package com.matiwe.api_republikanos.service;
 import com.matiwe.api_republikanos.dto.request.AnuncioRepublicaRequestDTO;
 import com.matiwe.api_republikanos.dto.response.AnuncioRepublicaResponseDTO;
 import com.matiwe.api_republikanos.model.AnuncioRepublica;
+import com.matiwe.api_republikanos.model.Contato;
 import com.matiwe.api_republikanos.model.Localizacao;
 import com.matiwe.api_republikanos.repository.AnuncioRepublicaRepository;
+import com.matiwe.api_republikanos.repository.ContatoRepository;
 import com.matiwe.api_republikanos.repository.LocalizacaoRepository;
 import com.matiwe.api_republikanos.util.AnuncioRepublicaMapper;
+import com.matiwe.api_republikanos.util.ContatoMapper;
 import com.matiwe.api_republikanos.util.LocalizacaoMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +27,9 @@ public class AnuncioRepublicaServiceImp implements AnuncioRepublicaService{
     private final AnuncioRepublicaMapper anuncioRepublicaMapper;
     private final LocalizacaoRepository localizacaoRepository;
     private final LocalizacaoMapper localizacaoMapper;
+    private final ContatoRepository contatoRepository;
+    private final ContatoMapper contatoMapper;
+
 
     @Override
     public AnuncioRepublicaResponseDTO findById(Long id) {
@@ -45,11 +51,25 @@ public class AnuncioRepublicaServiceImp implements AnuncioRepublicaService{
                 localizacao.getLogradouro(), localizacao.getNumero(), localizacao.getBairro()
         );
 
+        //adiciona a localizacao
         if (localizacoes.isEmpty()) {
             localizacaoRepository.save(localizacao);
             anuncioRepublica.setLocalizacao(localizacao);
         } else {
             anuncioRepublica.setLocalizacao(localizacoes.getFirst());
+        }
+
+        //procura se o contato já existe
+        Contato contato = contatoMapper.toContato(anuncioRepublicaDTO.getContatoDTO());
+        List<Contato> contatos = contatoRepository.findContatoByTelefoneAndEmail(
+                contato.getTelefone(), contato.getEmail());
+
+        //adiciona o contato
+        if (contatos.isEmpty()) {
+            contatoRepository.save(contato);
+            anuncioRepublica.setContato(contato);
+        } else {
+            anuncioRepublica.setContato(contatos.getFirst());
         }
 
         return anuncioRepublicaMapper.toAnuncioRepublicaDTO(anuncioRepublicaRepository.save(anuncioRepublica));

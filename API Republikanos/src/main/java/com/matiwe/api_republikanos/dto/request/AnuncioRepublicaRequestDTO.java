@@ -11,4 +11,6 @@ public class AnuncioRepublicaRequestDTO {
     private String Descricao;
 
     private LocalizacaoRequestDTO localizacaoDTO;
+
+    private ContatoRequestDTO contatoDTO;
 }

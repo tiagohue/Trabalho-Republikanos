@@ -34,20 +34,22 @@ public class AnuncioRepublica {
     @JoinTable(name = "TB_REPUBLICA_SERVICO")
     private List<Servico> servicos;
 
-    @ManyToOne
-    private Localizacao localizacao;
-
     @ElementCollection
     @JoinTable(name = "TB_REPUBLICA_VAGA")
     private List<Vaga> vagas;
 
     @ManyToOne
+    private Localizacao localizacao;
+
+    @ManyToOne
     private Contato contato;
 
     @Builder
-    public AnuncioRepublica(double valor, String descricao, Localizacao localizacao) {
+    public AnuncioRepublica(double valor, String descricao, Localizacao localizacao,
+                            Contato contato) {
         this.valor = valor;
         this.descricao = descricao;
         this.localizacao = localizacao;
+        this.contato = contato;
     }
 }
