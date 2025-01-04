@@ -1,10 +1,7 @@
 package com.matiwe.api_republikanos.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "TB_CONTATO")
@@ -17,4 +14,16 @@ public class Contato {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Long id;
+
+    @Column
+    private String telefone;
+
+    @Column
+    private String email;
+
+    @Builder
+    public Contato(String telefone, String email) {
+        this.telefone = telefone;
+        this.email = email;
+    }
 }
