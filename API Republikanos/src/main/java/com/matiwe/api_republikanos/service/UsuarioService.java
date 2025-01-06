@@ -8,15 +8,15 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public interface UsuarioService {
-    UsuarioResponseDTO findById(Long id);
+    UsuarioResponseDTO findById(String id);
 
     List<UsuarioResponseDTO> findAll();
 
     UsuarioResponseDTO register(UsuarioRequestDTO usuarioDTO);
 
-    UsuarioResponseDTO update(UsuarioRequestDTO usuarioDTO, Long id);
+    UsuarioResponseDTO update(UsuarioRequestDTO usuarioDTO, String id);
 
-    String delete(Long id);
+    String delete(String id);
 
     String gerarHash(String senha);
 }

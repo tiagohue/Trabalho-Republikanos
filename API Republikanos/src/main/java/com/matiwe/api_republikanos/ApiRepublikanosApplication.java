@@ -19,6 +19,9 @@ public class ApiRepublikanosApplication {
         SpringApplication.run(ApiRepublikanosApplication.class, args);
     }
 
+    /*
+    Desfazer o comentário assim que ajeitar a forma como as senhas estao sendo salvas por aqui
+
     @Bean
     CommandLineRunner popularBanco (@Autowired UsuarioRepository usuarioRepository,
                                     @Autowired UsuarioService usuarioService) {
@@ -32,5 +35,6 @@ public class ApiRepublikanosApplication {
 
         };
     }
+    */
 
 }

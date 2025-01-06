@@ -2,7 +2,6 @@ package com.matiwe.api_republikanos.controller;
 
 import com.matiwe.api_republikanos.dto.request.UsuarioRequestDTO;
 import com.matiwe.api_republikanos.dto.response.UsuarioResponseDTO;
-import com.matiwe.api_republikanos.repository.UsuarioRepository;
 import com.matiwe.api_republikanos.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<UsuarioResponseDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<UsuarioResponseDTO> findById(@PathVariable String id) {
         return ResponseEntity.ok().body(usuarioService.findById(id));
     }
 
@@ -41,12 +40,12 @@ public class UsuarioController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<UsuarioResponseDTO> update(@RequestBody UsuarioRequestDTO usuarioDTO,
-                                                      @PathVariable Long id) {
+                                                      @PathVariable String id) {
         return ResponseEntity.ok().body(usuarioService.update(usuarioDTO, id));
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@PathVariable String id) {
         return ResponseEntity.ok().body(usuarioService.delete(id));
     }
 }

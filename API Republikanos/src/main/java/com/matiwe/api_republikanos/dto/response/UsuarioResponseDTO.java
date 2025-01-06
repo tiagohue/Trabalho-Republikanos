@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Getter
 public class UsuarioResponseDTO {
-    private Long id;
+    private String id;
 
     private String login;
 

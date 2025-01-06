@@ -23,7 +23,7 @@ public class UsuarioServiceImp implements UsuarioService{
     private final UsuarioMapper usuarioMapper;
 
     @Override
-    public UsuarioResponseDTO findById(Long id) {
+    public UsuarioResponseDTO findById(String id) {
         return usuarioMapper.toUsuarioDTO(returnUsuario(id));
     }
 
@@ -41,7 +41,7 @@ public class UsuarioServiceImp implements UsuarioService{
     }
 
     @Override @Transactional
-    public UsuarioResponseDTO update(UsuarioRequestDTO usuarioDTO, Long id) {
+    public UsuarioResponseDTO update(UsuarioRequestDTO usuarioDTO, String id) {
         Usuario usuario = returnUsuario(id);
 
         usuarioMapper.updateUsuario(usuario, usuarioDTO);
@@ -50,7 +50,7 @@ public class UsuarioServiceImp implements UsuarioService{
     }
 
     @Override @Transactional
-    public String delete(Long id) {
+    public String delete(String id) {
         usuarioRepository.deleteById(id);
         return "Usuario de id: " + id + " foi deletado.";
     }
@@ -69,7 +69,7 @@ public class UsuarioServiceImp implements UsuarioService{
         }
     }
 
-    private Usuario returnUsuario(Long id) {
+    private Usuario returnUsuario(String id) {
         return usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario não encontrado."));
     }
