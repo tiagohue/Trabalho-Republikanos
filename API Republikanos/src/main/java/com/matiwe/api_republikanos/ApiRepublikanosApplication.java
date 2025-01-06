@@ -3,6 +3,8 @@ package com.matiwe.api_republikanos;
 import com.matiwe.api_republikanos.model.Usuario;
 import com.matiwe.api_republikanos.repository.UsuarioRepository;
 import com.matiwe.api_republikanos.service.UsuarioService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@OpenAPIDefinition(info = @Info(title = "Republikanos", version = "2.8.1", description = "Uma API para busca e oferta de vagas em repúblicas"))
 public class ApiRepublikanosApplication {
 
     public static void main(String[] args) {
