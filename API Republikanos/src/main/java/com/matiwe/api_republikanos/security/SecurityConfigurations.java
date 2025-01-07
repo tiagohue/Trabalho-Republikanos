@@ -27,6 +27,7 @@ public class SecurityConfigurations {
                 .sessionManagement(session -> session.sessionCreationPolicy(
                         SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizer -> authorizer
+                        .requestMatchers("/**").permitAll() // comentar para a autorizacao voltar a funcionar
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/usuarios").hasRole("ADMIN")
