@@ -51,6 +51,8 @@ public class UsuarioServiceImp implements UsuarioService{
 
     @Override @Transactional
     public String delete(String id) {
+        returnUsuario(id);
+
         usuarioRepository.deleteById(id);
         return "Usuario de id: " + id + " foi deletado.";
     }

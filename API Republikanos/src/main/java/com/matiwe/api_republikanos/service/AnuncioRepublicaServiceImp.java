@@ -64,6 +64,8 @@ public class AnuncioRepublicaServiceImp implements AnuncioRepublicaService{
 
     @Override @Transactional
     public String delete(Long id) {
+        returnAnuncioRepublica(id);
+
         anuncioRepublicaRepository.deleteById(id);
         return "AnuncioRepublica de id: " + id + " foi deletado.";
     }

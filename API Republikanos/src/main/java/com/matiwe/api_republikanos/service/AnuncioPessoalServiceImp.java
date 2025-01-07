@@ -47,6 +47,8 @@ public class AnuncioPessoalServiceImp implements AnuncioPessoalService{
 
     @Override @Transactional
     public String delete(Long id) {
+        returnAnuncioPessoal(id);
+
         anuncioPessoalRepository.deleteById(id);
         return "AnuncioPessoal de id: " + id + " foi deletado.";
     }
