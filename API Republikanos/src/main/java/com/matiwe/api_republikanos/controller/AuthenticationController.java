@@ -6,6 +6,9 @@ import com.matiwe.api_republikanos.dto.record.RegisterDTO;
 import com.matiwe.api_republikanos.model.Usuario;
 import com.matiwe.api_republikanos.repository.UsuarioRepository;
 import com.matiwe.api_republikanos.security.TokenService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,13 @@ public class AuthenticationController {
     @Autowired
     private TokenService tokenService;
 
+
+    @Operation(summary = "Realiza o login de um usuário ", method = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Login realizado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Credenciais incorretas"),
+
+    })
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.senha());
@@ -40,6 +50,12 @@ public class AuthenticationController {
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
+    @Operation(summary = "Realiza o registro de um usuário ", method = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Novo usuário registrado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Informações inválidas para registro"),
+
+    })
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
         if(this.usuarioRepository.findByLogin(data.login()) != null)

@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Republikanos", version = "2.8.1", description = "Uma API para busca e oferta de vagas em repúblicas"))
+@OpenAPIDefinition(info = @Info(title = "Republikanos", version = "2.8.1", description = "Uma API de busca e oferta de repúblicas"))
 public class ApiRepublikanosApplication {
 
     public static void main(String[] args) {
