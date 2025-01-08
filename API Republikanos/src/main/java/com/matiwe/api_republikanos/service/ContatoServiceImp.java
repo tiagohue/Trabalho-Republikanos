@@ -48,7 +48,7 @@ public class ContatoServiceImp implements ContatoService{
         if (contatos.isEmpty()) {
             return contatoRepository.save(contato);
         } else {
-            return contatos.getFirst();
+            return contatos.get(0);
         }
     }
 

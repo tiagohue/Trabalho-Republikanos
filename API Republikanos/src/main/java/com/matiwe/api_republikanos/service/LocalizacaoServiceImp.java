@@ -49,7 +49,7 @@ public class LocalizacaoServiceImp implements LocalizacaoService{
         if (localizacoes.isEmpty()) {
             return localizacaoRepository.save(localizacao);
         } else {
-            return localizacoes.getFirst();
+            return localizacoes.get(0);
         }
     }
 
