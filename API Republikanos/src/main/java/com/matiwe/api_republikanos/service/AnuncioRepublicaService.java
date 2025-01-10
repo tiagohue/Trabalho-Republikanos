@@ -15,4 +15,6 @@ public interface AnuncioRepublicaService {
     AnuncioRepublicaResponseDTO update(AnuncioRepublicaRequestDTO anuncioRepublicaDTO, Long id);
 
     String delete(Long id);
+
+    List<AnuncioRepublicaResponseDTO> findByBairro(String bairro);
 }

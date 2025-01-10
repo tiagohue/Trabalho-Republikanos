@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -81,4 +82,10 @@ public class AnuncioRepublicaController {
     public ResponseEntity<String> delete(@PathVariable Long id) {
         return ResponseEntity.ok().body(anuncioRepublicaService.delete(id));
     }
+
+    @PostMapping(value = "/buscar")
+    public ResponseEntity<List<AnuncioRepublicaResponseDTO>> buscarPeloBairro(@Param("bairro") String bairro) {
+        return ResponseEntity.ok().body(anuncioRepublicaService.findByBairro(bairro));
+    }
+
 }

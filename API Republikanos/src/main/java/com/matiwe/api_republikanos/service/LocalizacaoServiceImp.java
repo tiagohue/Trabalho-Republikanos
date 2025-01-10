@@ -53,6 +53,11 @@ public class LocalizacaoServiceImp implements LocalizacaoService{
         }
     }
 
+    @Override
+    public List<Localizacao> findByBairro(String bairro) {
+        return localizacaoRepository.findByBairroContainingIgnoreCase(bairro);
+    }
+
     @Override @Transactional
     public LocalizacaoResponseDTO update(LocalizacaoRequestDTO localizacaoDTO, Long id) {
         Localizacao localizacao = returnLocalizacao(id);

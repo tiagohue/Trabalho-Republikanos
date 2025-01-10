@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -73,5 +74,17 @@ public class AnuncioRepublicaServiceImp implements AnuncioRepublicaService{
     private AnuncioRepublica returnAnuncioRepublica(Long id) {
         return anuncioRepublicaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("AnuncioRepublica não encontrado."));
+    }
+
+    public List<AnuncioRepublicaResponseDTO> findByBairro(String bairro){
+        List<Localizacao> localizacoes = localizacaoService.findByBairro(bairro);
+
+        List<AnuncioRepublica> republicas = new ArrayList<AnuncioRepublica>();
+
+        for (Localizacao l : localizacoes) {
+            republicas.addAll(anuncioRepublicaRepository.findAnuncioRepublicaByLocalizacao(l));
+        }
+
+        return anuncioRepublicaMapper.toAnuncioRepublicaDTO(republicas);
     }
 }

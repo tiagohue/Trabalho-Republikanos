@@ -18,4 +18,6 @@ public interface LocalizacaoService {
     String delete(Long id);
 
     Localizacao registerByRepublica(LocalizacaoRequestDTO localizacaoDTO);
+
+    List<Localizacao> findByBairro(String bairro);
 }

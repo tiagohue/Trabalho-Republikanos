@@ -8,4 +8,6 @@ import java.util.List;
 public interface LocalizacaoRepository extends JpaRepository<Localizacao, Long> {
 
     List<Localizacao> findLocalizacaoByLogradouroAndNumeroAndBairro(String logradouro, String numero, String bairro);
+
+    List<Localizacao> findByBairroContainingIgnoreCase(String bairro);
 }
