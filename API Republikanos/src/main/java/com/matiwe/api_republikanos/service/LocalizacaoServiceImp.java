@@ -40,17 +40,7 @@ public class LocalizacaoServiceImp implements LocalizacaoService{
     public Localizacao registerByRepublica(LocalizacaoRequestDTO localizacaoDTO) {
         Localizacao localizacao = localizacaoMapper.toLocalizacao(localizacaoDTO);
 
-        //procura se a localizacao já existe
-        List<Localizacao> localizacoes = localizacaoRepository.findLocalizacaoByLogradouroAndNumeroAndBairro(
-                localizacao.getLogradouro(), localizacao.getNumero(), localizacao.getBairro()
-        );
-
-        //cria a localizacao se ela nao existir
-        if (localizacoes.isEmpty()) {
-            return localizacaoRepository.save(localizacao);
-        } else {
-            return localizacoes.get(0);
-        }
+        return localizacaoRepository.save(localizacao);
     }
 
     @Override

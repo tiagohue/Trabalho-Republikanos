@@ -38,7 +38,7 @@ public class AnuncioRepublica {
     @JoinTable(name = "TB_REPUBLICA_VAGA")
     private List<Vaga> vagas;
 
-    @ManyToOne
+    @OneToOne
     private Localizacao localizacao;
 
     @ManyToOne
