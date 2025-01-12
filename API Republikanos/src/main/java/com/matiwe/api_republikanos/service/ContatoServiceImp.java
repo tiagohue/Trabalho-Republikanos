@@ -37,7 +37,7 @@ public class ContatoServiceImp implements ContatoService{
     }
 
     @Override @Transactional
-    public Contato registerByRepublica(ContatoRequestDTO contatoDTO) {
+    public Contato registerByAnuncio(ContatoRequestDTO contatoDTO) {
         Contato contato = contatoMapper.toContato(contatoDTO);
 
         //procura se a contato já existe

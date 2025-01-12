@@ -18,4 +18,6 @@ public class AnuncioPessoalRequestDTO {
     private String bairroInteresse;
 
     private double valorLimite;
+
+    private ContatoRequestDTO contatoDTO;
 }

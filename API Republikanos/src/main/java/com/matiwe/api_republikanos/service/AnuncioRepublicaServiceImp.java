@@ -6,11 +6,7 @@ import com.matiwe.api_republikanos.model.AnuncioRepublica;
 import com.matiwe.api_republikanos.model.Contato;
 import com.matiwe.api_republikanos.model.Localizacao;
 import com.matiwe.api_republikanos.repository.AnuncioRepublicaRepository;
-import com.matiwe.api_republikanos.repository.ContatoRepository;
-import com.matiwe.api_republikanos.repository.LocalizacaoRepository;
 import com.matiwe.api_republikanos.util.AnuncioRepublicaMapper;
-import com.matiwe.api_republikanos.util.ContatoMapper;
-import com.matiwe.api_republikanos.util.LocalizacaoMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -48,7 +44,7 @@ public class AnuncioRepublicaServiceImp implements AnuncioRepublicaService{
         anuncioRepublica.setLocalizacao(localizacao);
 
         //cria o contato
-        Contato contato = contatoService.registerByRepublica(anuncioRepublicaDTO.getContatoDTO());
+        Contato contato = contatoService.registerByAnuncio(anuncioRepublicaDTO.getContatoDTO());
         anuncioRepublica.setContato(contato);
 
         return anuncioRepublicaMapper.toAnuncioRepublicaDTO(anuncioRepublicaRepository.save(anuncioRepublica));

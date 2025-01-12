@@ -17,5 +17,5 @@ public interface ContatoService {
 
     String delete(Long id);
 
-    Contato registerByRepublica(ContatoRequestDTO contatoDTO);
+    Contato registerByAnuncio(ContatoRequestDTO contatoDTO);
 }

@@ -3,6 +3,7 @@ package com.matiwe.api_republikanos.service;
 import com.matiwe.api_republikanos.dto.request.AnuncioPessoalRequestDTO;
 import com.matiwe.api_republikanos.dto.response.AnuncioPessoalResponseDTO;
 import com.matiwe.api_republikanos.model.AnuncioPessoal;
+import com.matiwe.api_republikanos.model.Contato;
 import com.matiwe.api_republikanos.repository.AnuncioPessoalRepository;
 import com.matiwe.api_republikanos.util.AnuncioPessoalMapper;
 import jakarta.transaction.Transactional;
@@ -18,6 +19,7 @@ import java.util.List;
 public class AnuncioPessoalServiceImp implements AnuncioPessoalService{
     private final AnuncioPessoalRepository anuncioPessoalRepository;
     private final AnuncioPessoalMapper anuncioPessoalMapper;
+    private final ContatoService contatoService;
 
     @Override
     public AnuncioPessoalResponseDTO findById(Long id) {
@@ -32,6 +34,10 @@ public class AnuncioPessoalServiceImp implements AnuncioPessoalService{
     @Override @Transactional
     public AnuncioPessoalResponseDTO register(AnuncioPessoalRequestDTO anuncioPessoalDTO) {
         AnuncioPessoal anuncioPessoal = anuncioPessoalMapper.toAnuncioPessoal(anuncioPessoalDTO);
+
+        //cria o contato
+        Contato contato = contatoService.registerByAnuncio(anuncioPessoalDTO.getContatoDTO());
+        anuncioPessoal.setContato(contato);
 
         return anuncioPessoalMapper.toAnuncioPessoalDTO(anuncioPessoalRepository.save(anuncioPessoal));
     }
