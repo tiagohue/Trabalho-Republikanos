@@ -2,11 +2,13 @@ package com.matiwe.api_republikanos.controller;
 
 import com.matiwe.api_republikanos.dto.request.AnuncioPessoalRequestDTO;
 import com.matiwe.api_republikanos.dto.response.AnuncioPessoalResponseDTO;
+import com.matiwe.api_republikanos.dto.response.AnuncioRepublicaResponseDTO;
 import com.matiwe.api_republikanos.service.AnuncioPessoalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -79,5 +81,10 @@ public class AnuncioPessoalController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         return ResponseEntity.ok().body(anuncioPessoalService.delete(id));
+    }
+
+    @PostMapping(value = "/buscar")
+    public ResponseEntity<List<AnuncioPessoalResponseDTO>> buscarPeloBairro(@Param("bairro") String bairro) {
+        return ResponseEntity.ok().body(anuncioPessoalService.findByBairro(bairro));
     }
 }

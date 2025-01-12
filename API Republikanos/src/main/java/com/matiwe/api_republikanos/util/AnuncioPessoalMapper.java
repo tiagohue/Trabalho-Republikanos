@@ -3,7 +3,6 @@ package com.matiwe.api_republikanos.util;
 import com.matiwe.api_republikanos.dto.request.AnuncioPessoalRequestDTO;
 import com.matiwe.api_republikanos.dto.response.AnuncioPessoalResponseDTO;
 import com.matiwe.api_republikanos.model.AnuncioPessoal;
-import jakarta.persistence.Column;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,8 +17,8 @@ public class AnuncioPessoalMapper {
                 .habitos(anuncioPessoalDTO.getHabitos())
                 .habilidades(anuncioPessoalDTO.getHabilidades())
                 .idade(anuncioPessoalDTO.getIdade())
-                .bairro_interesse(anuncioPessoalDTO.getBairro_interesse())
-                .valor_limite(anuncioPessoalDTO.getValor_limite())
+                .bairroInteresse(anuncioPessoalDTO.getBairroInteresse())
+                .valorLimite(anuncioPessoalDTO.getValorLimite())
                 .build();
     }
 
@@ -37,7 +36,7 @@ public class AnuncioPessoalMapper {
         anuncioPessoal.setHabitos(anuncioPessoalDTO.getHabitos());
         anuncioPessoal.setHabilidades(anuncioPessoalDTO.getHabilidades());
         anuncioPessoal.setIdade(anuncioPessoalDTO.getIdade());
-        anuncioPessoal.setBairro_interesse(anuncioPessoalDTO.getBairro_interesse());
-        anuncioPessoal.setValor_limite(anuncioPessoalDTO.getValor_limite());
+        anuncioPessoal.setBairroInteresse(anuncioPessoalDTO.getBairroInteresse());
+        anuncioPessoal.setValorLimite(anuncioPessoalDTO.getValorLimite());
     }
 }

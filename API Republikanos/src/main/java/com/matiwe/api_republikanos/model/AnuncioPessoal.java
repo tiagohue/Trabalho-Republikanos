@@ -30,24 +30,24 @@ public class AnuncioPessoal {
     @Column
     private int idade;
 
-    @Column
-    private String bairro_interesse;
+    @Column(name = "bairro_interesse")
+    private String bairroInteresse;
 
-    @Column
-    private double valor_limite;
+    @Column(name = "valor_limite")
+    private double valorLimite;
 
     @ManyToOne
     private Contato contato;
 
     @Builder
     public AnuncioPessoal(String profissao, String gostos, String habitos, String habilidades, int idade,
-                          String bairro_interesse, double valor_limite) {
+                          String bairroInteresse, double valorLimite) {
         this.profissao = profissao;
         this.gostos = gostos;
         this.habitos = habitos;
         this.habilidades = habilidades;
         this.idade = idade;
-        this.bairro_interesse = bairro_interesse;
-        this.valor_limite = valor_limite;
+        this.bairroInteresse = bairroInteresse;
+        this.valorLimite = valorLimite;
     }
 }

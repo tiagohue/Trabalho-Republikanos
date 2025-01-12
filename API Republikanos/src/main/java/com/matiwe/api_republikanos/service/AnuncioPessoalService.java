@@ -15,4 +15,6 @@ public interface AnuncioPessoalService {
     AnuncioPessoalResponseDTO update(AnuncioPessoalRequestDTO anuncioPessoalDTO, Long id);
 
     String delete(Long id);
+
+    List<AnuncioPessoalResponseDTO> findByBairro(String bairro);
 }

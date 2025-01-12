@@ -53,6 +53,13 @@ public class AnuncioPessoalServiceImp implements AnuncioPessoalService{
         return "AnuncioPessoal de id: " + id + " foi deletado.";
     }
 
+    @Override
+    public List<AnuncioPessoalResponseDTO> findByBairro(String bairro) {
+        List<AnuncioPessoal> anuncios = anuncioPessoalRepository.findByBairroInteresseContainingIgnoreCase(bairro);
+
+        return anuncioPessoalMapper.toAnuncioPessoalDTO(anuncios);
+    }
+
     private AnuncioPessoal returnAnuncioPessoal(Long id) {
         return anuncioPessoalRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("AnuncioPessoal não encontrado."));

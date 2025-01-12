@@ -15,7 +15,7 @@ public class AnuncioPessoalRequestDTO {
 
     private int idade;
 
-    private String bairro_interesse;
+    private String bairroInteresse;
 
-    private double valor_limite;
+    private double valorLimite;
 }

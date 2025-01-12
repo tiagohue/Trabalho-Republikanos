@@ -18,9 +18,9 @@ public class AnuncioPessoalResponseDTO {
 
     private int idade;
 
-    private String bairro_interesse;
+    private String bairroInteresse;
 
-    private double valor_limite;
+    private double valorLimite;
 
     private Contato contato;
 
@@ -31,8 +31,8 @@ public class AnuncioPessoalResponseDTO {
         this.habitos = anuncioPessoal.getHabitos();
         this.habilidades = anuncioPessoal.getHabilidades();
         this.idade = anuncioPessoal.getIdade();
-        this.bairro_interesse = anuncioPessoal.getBairro_interesse();
-        this.valor_limite = anuncioPessoal.getValor_limite();
+        this.bairroInteresse = anuncioPessoal.getBairroInteresse();
+        this.valorLimite = anuncioPessoal.getValorLimite();
         this.contato = anuncioPessoal.getContato();
     }
 }
