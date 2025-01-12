@@ -45,10 +45,13 @@ public class AnuncioRepublica {
     private Contato contato;
 
     @Builder
-    public AnuncioRepublica(double valor, String descricao, Localizacao localizacao,
-                            Contato contato) {
+    public AnuncioRepublica(double valor, String descricao, List<Comodo> comodos, List<Servico> servicos,
+                            List<Vaga> vagas, Localizacao localizacao, Contato contato) {
         this.valor = valor;
         this.descricao = descricao;
+        this.comodos = comodos;
+        this.servicos = servicos;
+        this.vagas = vagas;
         this.localizacao = localizacao;
         this.contato = contato;
     }

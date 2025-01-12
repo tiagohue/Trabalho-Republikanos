@@ -20,9 +20,9 @@ public class AnuncioRepublicaResponseDTO {
 
     private List<Servico> servicos;
 
-    private Localizacao localizacao;
-
     private List<Vaga> vagas;
+
+    private Localizacao localizacao;
 
     private Contato contato;
 
@@ -32,8 +32,8 @@ public class AnuncioRepublicaResponseDTO {
         this.descricao = anuncioRepublica.getDescricao();
         this.comodos = anuncioRepublica.getComodos();
         this.servicos = anuncioRepublica.getServicos();
-        this.localizacao = anuncioRepublica.getLocalizacao();
         this.vagas = anuncioRepublica.getVagas();
+        this.localizacao = anuncioRepublica.getLocalizacao();
         this.contato = anuncioRepublica.getContato();
     }
 }
