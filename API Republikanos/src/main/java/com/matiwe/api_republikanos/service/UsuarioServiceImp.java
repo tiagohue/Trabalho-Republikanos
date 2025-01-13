@@ -8,6 +8,7 @@ import com.matiwe.api_republikanos.util.UsuarioMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
@@ -34,7 +35,7 @@ public class UsuarioServiceImp implements UsuarioService{
 
     @Override @Transactional
     public UsuarioResponseDTO register(UsuarioRequestDTO usuarioDTO) {
-        usuarioDTO.setSenha(gerarHash(usuarioDTO.getSenha()));
+        usuarioDTO.setSenha(new BCryptPasswordEncoder().encode(usuarioDTO.getSenha()));
         Usuario usuario = usuarioMapper.toUsuario(usuarioDTO);
 
         return usuarioMapper.toUsuarioDTO(usuarioRepository.save(usuario));
@@ -55,20 +56,6 @@ public class UsuarioServiceImp implements UsuarioService{
 
         usuarioRepository.deleteById(id);
         return "Usuario de id: " + id + " foi deletado.";
-    }
-
-    @Override
-    public String gerarHash(String senha) {
-        try {
-            MessageDigest algoritmo = MessageDigest.getInstance("MD5");
-            byte massageDigest[] = algoritmo.digest(senha.getBytes("UTF-8"));
-
-            String hashSenha = new String(massageDigest);
-
-            return hashSenha;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private Usuario returnUsuario(String id) {

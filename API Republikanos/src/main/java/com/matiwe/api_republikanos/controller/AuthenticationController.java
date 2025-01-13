@@ -2,20 +2,19 @@ package com.matiwe.api_republikanos.controller;
 
 import com.matiwe.api_republikanos.dto.record.AuthenticationDTO;
 import com.matiwe.api_republikanos.dto.record.LoginResponseDTO;
-import com.matiwe.api_republikanos.dto.record.RegisterDTO;
+import com.matiwe.api_republikanos.dto.request.UsuarioRequestDTO;
 import com.matiwe.api_republikanos.model.Usuario;
 import com.matiwe.api_republikanos.repository.UsuarioRepository;
 import com.matiwe.api_republikanos.security.TokenService;
+import com.matiwe.api_republikanos.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +31,8 @@ public class AuthenticationController {
 
     @Autowired
     private TokenService tokenService;
+    @Autowired
+    private UsuarioService usuarioService;
 
 
     @Operation(summary = "Realiza o login de um usuário ", method = "POST")
@@ -57,14 +58,11 @@ public class AuthenticationController {
 
     })
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
-        if(this.usuarioRepository.findByLogin(data.login()) != null)
+    public ResponseEntity register(@RequestBody @Valid UsuarioRequestDTO data) {
+        if(this.usuarioRepository.findByLogin(data.getLogin()) != null)
             return ResponseEntity.badRequest().build();
 
-        String senhaCriptografada = new BCryptPasswordEncoder().encode(data.senha());
-        Usuario novoUsuario = new Usuario(data.login(), senhaCriptografada, data.nome(), data.role());
-
-        this.usuarioRepository.save(novoUsuario);
+        usuarioService.register(data);
 
         return ResponseEntity.ok().build();
     }
