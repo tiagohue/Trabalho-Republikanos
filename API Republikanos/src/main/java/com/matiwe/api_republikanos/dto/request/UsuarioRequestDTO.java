@@ -1,5 +1,6 @@
 package com.matiwe.api_republikanos.dto.request;
 
+import com.matiwe.api_republikanos.model.enums.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,4 +11,6 @@ public class UsuarioRequestDTO {
     private String senha;
 
     private String nome;
+
+    private UserRole role;
 }

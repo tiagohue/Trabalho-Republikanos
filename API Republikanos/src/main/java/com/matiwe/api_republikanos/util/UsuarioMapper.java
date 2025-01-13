@@ -15,6 +15,7 @@ public class UsuarioMapper {
                 .login(usuarioDTO.getLogin())
                 .senha(usuarioDTO.getSenha())
                 .nome(usuarioDTO.getNome())
+                .role(usuarioDTO.getRole())
                 .build();
     }
 
@@ -30,5 +31,6 @@ public class UsuarioMapper {
         usuario.setLogin(usuarioDTO.getLogin());
         usuario.setSenha(usuarioDTO.getSenha());
         usuario.setNome(usuarioDTO.getNome());
+        usuario.setRole(usuarioDTO.getRole());
     }
 }
