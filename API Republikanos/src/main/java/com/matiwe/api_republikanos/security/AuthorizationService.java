@@ -1,4 +1,4 @@
-package com.matiwe.api_republikanos.service;
+package com.matiwe.api_republikanos.security;
 
 import com.matiwe.api_republikanos.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
