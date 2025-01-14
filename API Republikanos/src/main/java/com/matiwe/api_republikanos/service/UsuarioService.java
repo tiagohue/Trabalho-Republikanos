@@ -17,6 +17,4 @@ public interface UsuarioService {
     UsuarioResponseDTO update(UsuarioRequestDTO usuarioDTO, String id);
 
     String delete(String id);
-
-    String gerarHash(String senha);
 }

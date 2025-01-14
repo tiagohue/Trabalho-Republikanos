@@ -3,6 +3,7 @@ package com.matiwe.api_republikanos.dto.response;
 import com.matiwe.api_republikanos.model.AnuncioPessoal;
 import com.matiwe.api_republikanos.model.AnuncioRepublica;
 import com.matiwe.api_republikanos.model.Usuario;
+import com.matiwe.api_republikanos.model.enums.UserRole;
 import lombok.Getter;
 
 import java.util.Set;
@@ -17,6 +18,8 @@ public class UsuarioResponseDTO {
 
     private String nome;
 
+    private UserRole role;
+
     Set<AnuncioRepublica> republicas;
 
     Set<AnuncioPessoal> anuncios;
@@ -26,6 +29,7 @@ public class UsuarioResponseDTO {
         this.login = usuario.getLogin();
         this.senha = usuario.getSenha();
         this.nome = usuario.getNome();
+        this.role = usuario.getRole();
         this.republicas = usuario.getRepublicas();
         this.anuncios = usuario.getAnuncios();
     }

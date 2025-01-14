@@ -31,7 +31,7 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String nome;
 
-    @Column
+    @Column(nullable = false )
     private UserRole role;
 
     @OneToMany()
@@ -43,12 +43,6 @@ public class Usuario implements UserDetails {
     Set<AnuncioPessoal> anuncios;
 
     @Builder
-    public Usuario(String login, String senha, String nome) {
-        this.login = login;
-        this.senha = senha;
-        this.nome = nome;
-    }
-
     public Usuario(String login, String senha, String nome, UserRole role) {
         this.login = login;
         this.senha = senha;

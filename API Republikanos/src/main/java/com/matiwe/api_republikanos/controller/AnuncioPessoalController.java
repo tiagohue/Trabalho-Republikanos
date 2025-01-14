@@ -7,6 +7,7 @@ import com.matiwe.api_republikanos.service.AnuncioPessoalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +52,7 @@ public class AnuncioPessoalController {
     })
     @PostMapping
     public ResponseEntity<AnuncioPessoalResponseDTO> register(
-            @RequestBody AnuncioPessoalRequestDTO anuncioPessoalRequestDTO,
+            @RequestBody @Valid AnuncioPessoalRequestDTO anuncioPessoalRequestDTO,
             UriComponentsBuilder uriBuilder) {
 
         AnuncioPessoalResponseDTO anuncioPessoalResponseDTO = anuncioPessoalService.register(anuncioPessoalRequestDTO);

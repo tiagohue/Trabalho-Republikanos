@@ -7,6 +7,7 @@ import com.matiwe.api_republikanos.service.AnuncioRepublicaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +52,7 @@ public class AnuncioRepublicaController {
     })
     @PostMapping
     public ResponseEntity<AnuncioRepublicaResponseDTO> register(
-            @RequestBody AnuncioRepublicaRequestDTO anuncioRepublicaRequestDTO,
+            @Valid @RequestBody AnuncioRepublicaRequestDTO anuncioRepublicaRequestDTO,
             UriComponentsBuilder uriBuilder) {
 
         AnuncioRepublicaResponseDTO anuncioRepublicaResponseDTO = anuncioRepublicaService.register(anuncioRepublicaRequestDTO);
@@ -67,8 +68,7 @@ public class AnuncioRepublicaController {
 
     })
     @PutMapping(value = "/{id}")
-    public ResponseEntity<AnuncioRepublicaResponseDTO> update(@RequestBody AnuncioRepublicaRequestDTO anuncioRepublicaDTO,
-                                                      @PathVariable Long id) {
+    public ResponseEntity<AnuncioRepublicaResponseDTO> update(@RequestBody AnuncioRepublicaRequestDTO anuncioRepublicaDTO,                                            @PathVariable Long id) {
         return ResponseEntity.ok().body(anuncioRepublicaService.update(anuncioRepublicaDTO, id));
     }
 

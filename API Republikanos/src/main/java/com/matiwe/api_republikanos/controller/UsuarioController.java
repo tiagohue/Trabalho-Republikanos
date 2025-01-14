@@ -6,6 +6,7 @@ import com.matiwe.api_republikanos.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +51,7 @@ public class UsuarioController {
     })
     @PostMapping
     public ResponseEntity<UsuarioResponseDTO> register(
-            @RequestBody UsuarioRequestDTO usuarioRequestDTO,
+            @Valid @RequestBody UsuarioRequestDTO usuarioRequestDTO,
             UriComponentsBuilder uriBuilder) {
 
         UsuarioResponseDTO usuarioResponseDTO = usuarioService.register(usuarioRequestDTO);
