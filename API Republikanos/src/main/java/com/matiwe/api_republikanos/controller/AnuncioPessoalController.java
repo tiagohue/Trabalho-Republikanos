@@ -45,7 +45,7 @@ public class AnuncioPessoalController {
 
     @Operation(summary = "Realiza o registro de um anúncio ", method = "POST")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Anuncio pessoal registrado com sucesso"),
+            @ApiResponse(responseCode = "201", description = "Anuncio pessoal registrado com sucesso"),
             @ApiResponse(responseCode = "400", description = "informações inválidas para o registro"),
 
     })
@@ -75,7 +75,7 @@ public class AnuncioPessoalController {
     @Operation(summary = "Deleta um anúncio ", method = "DELETE")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Anúncio deletado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Não existe anúncio pessoal com o Id informado"),
+            @ApiResponse(responseCode = "500", description = "Não existe anúncio pessoal com o Id informado"),
 
     })
     @DeleteMapping(value = "/{id}")
@@ -83,6 +83,11 @@ public class AnuncioPessoalController {
         return ResponseEntity.ok().body(anuncioPessoalService.delete(id));
     }
 
+    @Operation(summary = "Realiza uma busca de anúncios pessoais por bairro de interesse ", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Nenhum anuncio cadastrado com esse bairo"),
+    })
     @PostMapping(value = "/buscar")
     public ResponseEntity<List<AnuncioPessoalResponseDTO>> buscarPeloBairro(@Param("bairro") String bairro) {
         return ResponseEntity.ok().body(anuncioPessoalService.findByBairro(bairro));

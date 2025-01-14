@@ -24,7 +24,7 @@ public class UsuarioController {
     @Operation(summary = "Realiza uma busca de usuários por Id ", method = "GET")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Não existe usuario com o Id informado"),
+            @ApiResponse(responseCode = "500", description = "Não existe usuario com o Id informado"),
 
     })
     @GetMapping(value = "/{id}")
@@ -44,8 +44,8 @@ public class UsuarioController {
 
     @Operation(summary = "Realiza o registro de um usuário ", method = "POST")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Usuario registrado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "informações inválidas para o registro"),
+            @ApiResponse(responseCode = "201", description = "Usuario registrado com sucesso"),
+            @ApiResponse(responseCode = "500", description = "O dados de login já está em uso por outro usuário "),
 
     })
     @PostMapping
@@ -62,7 +62,7 @@ public class UsuarioController {
     @Operation(summary = "Atualiza um usuário ", method = "PUT")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuário atualizado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Não existe usuario com o Id informado"),
+            @ApiResponse(responseCode = "500", description = "Não existe usuario com o Id informado"),
 
     })
     @PutMapping(value = "/{id}")
@@ -74,7 +74,7 @@ public class UsuarioController {
     @Operation(summary = "Deleta um usuario ", method = "DELETE")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Não existe usuario com o Id informado"),
+            @ApiResponse(responseCode = "500", description = "Não existe usuario com o Id informado"),
 
     })
     @DeleteMapping(value = "/{id}")

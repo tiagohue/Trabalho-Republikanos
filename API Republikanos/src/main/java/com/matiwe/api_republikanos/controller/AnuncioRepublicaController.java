@@ -25,7 +25,7 @@ public class AnuncioRepublicaController {
     @Operation(summary = "Realiza uma busca de anúncios de repúblicas por Id ", method = "GET")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Não existe anuncio de republica com o Id informado"),
+            @ApiResponse(responseCode = "500", description = "Não existe anuncio de republica com o Id informado"),
 
     })
     @GetMapping(value = "/{id}")
@@ -45,7 +45,7 @@ public class AnuncioRepublicaController {
 
     @Operation(summary = "Realiza o registro de um anúncio ", method = "POST")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Anuncio da república registrado com sucesso"),
+            @ApiResponse(responseCode = "201", description = "Anuncio da república registrado com sucesso"),
             @ApiResponse(responseCode = "400", description = "informações inválidas para o registro"),
 
     })
@@ -63,7 +63,7 @@ public class AnuncioRepublicaController {
     @Operation(summary = "Atualiza um anúncio ", method = "PUT")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Anúncio atualizado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Não existe anúncio de república com o Id informado"),
+            @ApiResponse(responseCode = "500", description = "Não existe anúncio de república com o Id informado"),
 
     })
     @PutMapping(value = "/{id}")
@@ -75,7 +75,7 @@ public class AnuncioRepublicaController {
     @Operation(summary = "Deleta um anúncio ", method = "DELETE")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Anúncio deletado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Não existe anúncio de república com o Id informado"),
+            @ApiResponse(responseCode = "500", description = "Não existe anúncio de república com o Id informado"),
 
     })
     @DeleteMapping(value = "/{id}")
@@ -83,6 +83,11 @@ public class AnuncioRepublicaController {
         return ResponseEntity.ok().body(anuncioRepublicaService.delete(id));
     }
 
+    @Operation(summary = "Buscar anuncio pelo bairro ", method = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Busca Realizada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Não existe anúncio de república para o bairro informado"),
+    })
     @PostMapping(value = "/buscar")
     public ResponseEntity<List<AnuncioRepublicaResponseDTO>> buscarPeloBairro(@Param("bairro") String bairro) {
         return ResponseEntity.ok().body(anuncioRepublicaService.findByBairro(bairro));
