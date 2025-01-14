@@ -4,11 +4,13 @@ import com.matiwe.api_republikanos.model.Localizacao;
 import com.matiwe.api_republikanos.model.enums.Comodo;
 import com.matiwe.api_republikanos.model.enums.Servico;
 import com.matiwe.api_republikanos.model.enums.Vaga;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Getter @Setter
 public class AnuncioRepublicaRequestDTO {
     private double valor;
